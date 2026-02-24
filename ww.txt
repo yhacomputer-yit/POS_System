@@ -1,4 +1,0 @@
-POS Safe Receipt
-Amount: 16000
-Type: Deposit
-Date: 2025-11-18 08:51:18.905619

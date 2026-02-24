@@ -77,10 +77,9 @@ class Database:
                     id INT AUTO_INCREMENT PRIMARY KEY,
                     amount DECIMAL(10,2),
                     type VARCHAR(50),
-                    date DATETIME
-                    staff_id int,
+                    date DATETIME,
+                    staff_id INT,
                     FOREIGN KEY (staff_id) REFERENCES staff(id)
-
                 )
             """)
 
