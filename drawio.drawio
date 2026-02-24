@@ -1,0 +1,57 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="POS_ERD_1toMany" id="bR2pW0EHGw1W6uU5bYUw">
+    <mxGraphModel dx="1193" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        
+        <!-- Tables -->
+        <mxCell id="users" value="users&#10;PK: id&#10;username&#10;password" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE699;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="140" height="80" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="categories" value="categories&#10;PK: id&#10;name" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C6E2FF;" vertex="1" parent="1">
+          <mxGeometry x="300" y="40" width="140" height="60" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="items" value="items&#10;PK: id&#10;name&#10;price&#10;barcode&#10;FK: category_id" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;" vertex="1" parent="1">
+          <mxGeometry x="300" y="160" width="140" height="100" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="staff" value="staff&#10;PK: id&#10;name&#10;role" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFD1DC;" vertex="1" parent="1">
+          <mxGeometry x="40" y="160" width="140" height="80" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="safe_transactions" value="safe_transactions&#10;PK: id&#10;amount&#10;type&#10;date&#10;FK: staff_id" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;" vertex="1" parent="1">
+          <mxGeometry x="40" y="300" width="160" height="100" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="sales" value="sales&#10;PK: id&#10;quantity&#10;total&#10;date&#10;FK: item_id&#10;FK: staff_id" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;" vertex="1" parent="1">
+          <mxGeometry x="300" y="300" width="160" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- Relationships with crow's foot -->
+        <!-- items -> categories -->
+        <mxCell id="rel_items_categories" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;startArrow=none;startSize=12;endSize=12;" edge="1" source="items" target="categories" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- sales -> items -->
+        <mxCell id="rel_sales_items" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;startArrow=none;startSize=12;endSize=12;" edge="1" source="sales" target="items" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- sales -> staff -->
+        <mxCell id="rel_sales_staff" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;startArrow=none;startSize=12;endSize=12;" edge="1" source="sales" target="staff" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- safe_transactions -> staff -->
+        <mxCell id="rel_safe_staff" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;startArrow=none;startSize=12;endSize=12;" edge="1" source="safe_transactions" target="staff" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

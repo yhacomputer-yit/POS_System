@@ -1,0 +1,6 @@
+Safe Transaction Receipt
+==============================
+Transaction ID: 2
+Date: 2025-11-18 09:07:38
+Staff: Staff 1
+Type: Withdrawal
