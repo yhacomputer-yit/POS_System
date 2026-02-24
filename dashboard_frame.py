@@ -1,39 +1,31 @@
 import tkinter as tk
 
-
-class DashboardFrame(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.controller = controller
-        self.setup_ui()
+# Dashboard Window
+def create_dashboard_frame(parent, show_category, show_item, show_staff, show_safe_list, show_pos, show_login):
+    frame = tk.Frame(parent)
     
-    def setup_ui(self):
-        tk.Label(self, text="POS System Dashboard", font=("Arial", 20, "bold")).pack(pady=20)
-        
-        main_frame = tk.Frame(self)
-        main_frame.pack(pady=20)
-        
-        # POS Sales button (prominent)
-        tk.Button(main_frame, text="POS Sales", font=("Arial", 14, "bold"),
-                  bg="#4CAF50", fg="white", width=20, height=2,
-                  command=lambda: self.controller.show_frame("POS")).grid(row=0, column=0, columnspan=2, pady=10, padx=10)
-        
-        # Management section
-        tk.Label(main_frame, text="Management", font=("Arial", 12, "bold")).grid(row=1, column=0, columnspan=2, pady=10)
-        
-        buttons = [
-            ("Category", "CategoryCRUD"),
-            ("Item", "ItemCRUD"),
-            ("Staff", "StaffCRUD"),
-            ("Safe List", "SafeList")
-        ]
-        
-        for i, (text, frame) in enumerate(buttons):
-            row = 2 + (i // 2)
-            col = i % 2
-            tk.Button(main_frame, text=f"{text} CRUD" if text != "Safe List" else text, width=15, height=2,
-                     command=lambda f=frame: self.controller.show_frame(f)).grid(row=row, column=col, pady=5, padx=5)
-        
-        # Logout button
-        tk.Button(self, text="Logout", bg="#f44336", fg="white", width=20, height=2,
-                 command=lambda: self.controller.show_frame("Login")).pack(pady=20)
+    # Title
+    tk.Label(frame, text="POS System Dashboard", font=("Arial", 20, "bold")).pack(pady=20)
+    
+    # POS Sales Button
+    tk.Button(frame, text="POS Sales", font=("Arial", 14, "bold"),
+              bg="#4CAF50", fg="white", width=20, height=2,
+              command=show_pos).pack(pady=10)
+    
+    # Management Section
+    tk.Label(frame, text="Management", font=("Arial", 14, "bold")).pack(pady=10)
+    
+    # CRUD Buttons
+    btn_frame = tk.Frame(frame)
+    btn_frame.pack(pady=10)
+    
+    tk.Button(btn_frame, text="Category", width=15, height=2, command=show_category).grid(row=0, column=0, padx=5, pady=5)
+    tk.Button(btn_frame, text="Item", width=15, height=2, command=show_item).grid(row=0, column=1, padx=5, pady=5)
+    tk.Button(btn_frame, text="Staff", width=15, height=2, command=show_staff).grid(row=1, column=0, padx=5, pady=5)
+    tk.Button(btn_frame, text="Safe List", width=15, height=2, command=show_safe_list).grid(row=1, column=1, padx=5, pady=5)
+    
+    # Logout Button
+    tk.Button(frame, text="Logout", bg="#f44336", fg="white", width=20, height=2,
+              command=show_login).pack(pady=20)
+    
+    return frame
