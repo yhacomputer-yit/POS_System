@@ -40,20 +40,22 @@ class POSApp:
         for frame in self.frames.values():
             frame.pack_forget()
         self.frames[frame_name].pack(fill="both", expand=True)
+        
         if frame_name == "CategoryCRUD":
-            self.frames[frame_name].load_categories()
+            self.frames[frame_name].load()
         elif frame_name == "ItemCRUD":
-            self.frames[frame_name].load_categories_for_item()
-            self.frames[frame_name].load_items()
+            self.frames[frame_name].load_categories()
+            self.frames[frame_name].load()
         elif frame_name == "StaffCRUD":
-            self.frames[frame_name].load_staff()
+            self.frames[frame_name].load()
         elif frame_name == "SafeList":
-            self.frames[frame_name].load_safe_transactions()
+            self.frames[frame_name].load()
+        elif frame_name == "POS":
+            self.frames[frame_name].load_items()
+            self.frames[frame_name].load_staff()
 
 # Run the app
 if __name__ == "__main__":
-    db = Database()
-    db.setup_database()
     root = tk.Tk()
     app = POSApp(root)
     root.mainloop()

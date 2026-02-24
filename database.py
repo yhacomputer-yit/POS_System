@@ -4,6 +4,7 @@ from datetime import datetime
 class Database:
     def __init__(self):
         self.connection = None
+        self.setup_database()
         self.connect()
 
     def connect(self):
@@ -12,7 +13,7 @@ class Database:
                 host="localhost",
                 port=3306,
                 user="root",
-                password="hidecard",
+                password="admin123",
                 database="pos_db"
             )
             print("Database connected successfully.")
@@ -25,7 +26,7 @@ class Database:
                 host="localhost",
                 port=3306,
                 user="root",
-                password="hidecard",
+                password="admin123",
             )
             cursor = conn.cursor()
 
@@ -82,22 +83,6 @@ class Database:
                     FOREIGN KEY (staff_id) REFERENCES staff(id)
                 )
             """)
-
-            # Add staff_id if not exists
-            cursor.execute("""
-                SELECT COUNT(*)
-                FROM INFORMATION_SCHEMA.COLUMNS
-                WHERE TABLE_NAME='safe_transactions'
-                AND COLUMN_NAME='staff_id'
-                AND TABLE_SCHEMA='pos_db'
-            """)
-            if cursor.fetchone()[0] == 0:
-                cursor.execute("ALTER TABLE safe_transactions ADD COLUMN staff_id INT")
-                cursor.execute("""
-                    ALTER TABLE safe_transactions 
-                    ADD CONSTRAINT fk_safe_staff 
-                    FOREIGN KEY (staff_id) REFERENCES staff(id)
-                """)
 
             # Sales
             cursor.execute("""
